@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Calorie Counter — Mark 1</title>
   <link rel="stylesheet" href="./styles.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js" defer></script>
+  <script src="./app.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -46,13 +47,13 @@
 
       <div class="card">
         <div class="card-header"><span id="right-title">Parsed Nutrition (per serving)</span></div>
-        <div class="card-content" id="right-content"></div>
+        <div class="card-content" id="right-content">
+          <p>Upload a clear nutrition label and press <b>Scan Nutrition Label</b>. I’ll extract calories and macros automatically.</p>
+        </div>
       </div>
     </div>
 
     <div class="footer">Built for on-device use. No data leaves your browser. OCR by Tesseract.js. This is an estimator and may be inaccurate.</div>
   </div>
-
-  <script src="./app.js"></script>
 </body>
 </html>

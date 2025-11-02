@@ -1,17 +1,10 @@
-\
+document.addEventListener('DOMContentLoaded', () => {
 // State
 let mode = "label";
 let imageUrl = null;
 let ocr = null;
 let rawText = "";
-let estimateKcal = null;
-
-const FOOD_DB = {
-  "apple": 52, "banana": 96, "bread (white)": 265, "bread (wholemeal)": 247, "butter": 717,
-  "chicken breast (cooked)": 165, "chips/fries": 312, "egg (boiled)": 155, "grilled salmon": 208,
-  "oats": 389, "peanut butter": 588, "pasta (cooked)": 131, "pizza (cheese)": 266, "rice (cooked)": 130,
-  "steak (sirloin, cooked)": 271, "tofu": 76, "tomato": 18, "yoghurt (plain)": 59, "avocado": 160, "broccoli": 35,
-};
+const FOOD_DB = {"apple":52,"banana":96,"bread (white)":265,"bread (wholemeal)":247,"butter":717,"chicken breast (cooked)":165,"chips/fries":312,"egg (boiled)":155,"grilled salmon":208,"oats":389,"peanut butter":588,"pasta (cooked)":131,"pizza (cheese)":266,"rice (cooked)":130,"steak (sirloin, cooked)":271,"tofu":76,"tomato":18,"yoghurt (plain)":59,"avocado":160,"broccoli":35};
 
 // Elements
 const tabLabel = document.getElementById("tab-label");
@@ -38,7 +31,6 @@ function gramsFromServing(serving){
   if(/per\s*100\s*g/.test((serving||"").toLowerCase())) return 100;
   return undefined;
 }
-
 function parseLabelOCR(text){
   const normalized = text.replace(/\n+/g,"\n").replace(/\s{2,}/g," ").toLowerCase();
   const result = { text };
@@ -181,18 +173,12 @@ scanBtn.onclick = async ()=>{
 };
 
 exportBtn.onclick = ()=>{
-  const payload = {
-    mode,
-    timestamp: new Date().toISOString(),
-    image: !!imageUrl,
-    label: ocr,
-    rawText
-  };
+  const payload = { mode, timestamp:new Date().toISOString(), image: !!imageUrl, label: ocr, rawText };
   const blob = new Blob([JSON.stringify(payload,null,2)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url; a.download = `calorie-counter-${Date.now()}.json`; a.click();
+  const a = document.createElement("a"); a.href = url; a.download = `calorie-counter-${Date.now()}.json`; a.click();
   URL.revokeObjectURL(url);
 };
 
 render();
+});
