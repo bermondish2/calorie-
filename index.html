@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Calorie Counter — Mark 1</title>
+  <link rel="stylesheet" href="./styles.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="h1">Calorie Counter</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="segment">
+          <button id="tab-label" class="active">Label</button>
+          <button id="tab-meal">Meal</button>
+        </div>
+        <button id="btn-export" class="btn btn-secondary">Export</button>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-header">Upload / Drop an Image</div>
+        <div class="card-content">
+          <div id="dz" class="dropzone">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0l-4 4m4-4l4 4" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 16v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div>Drag & drop a meal or nutrition label image here</div>
+            <button id="btn-choose" class="btn btn-secondary">Choose file</button>
+            <input id="file" type="file" accept="image/*" class="hidden"/>
+          </div>
+
+          <div id="preview" class="preview hidden">
+            <img id="img" alt="uploaded"/>
+            <button id="btn-clear" class="btn btn-secondary close">Remove</button>
+          </div>
+
+          <div id="label-actions" class="hidden" style="margin-top:12px">
+            <button id="btn-scan" class="btn btn-primary">Scan Nutrition Label</button>
+            <div class="progress" style="margin-top:8px"><div id="progress-bar"></div></div>
+            <div id="ocr-text" class="mono" style="margin-top:8px"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><span id="right-title">Parsed Nutrition (per serving)</span></div>
+        <div class="card-content" id="right-content"></div>
+      </div>
+    </div>
+
+    <div class="footer">Built for on-device use. No data leaves your browser. OCR by Tesseract.js. This is an estimator and may be inaccurate.</div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
